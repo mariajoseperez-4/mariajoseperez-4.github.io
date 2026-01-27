@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relational Database - Maria Jose Perez</title>
+    <title>Three-Tier Web Application - Maria Jose Perez</title>
 </head>
 <body>
     <header>
@@ -11,198 +11,72 @@
         <nav>
             <ul>
                 <li><a href="index.html">Resume</a></li>
-                <li><a href="project1.html">Three-Tier Web Application</a></li>
-                <li><a href="project2.html">Relational Database</a></li>
+                <li><a href="project1.html">Relational Database</a></li>
+                <li><a href="project2.html">Three-Tier Web Application</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <article>
-            <h2>Relational Database System - Pet Boarding Management</h2>
+            <!-- 1. TITLE -->
+            <h2>Three-Tier Distributed Enterprise Web Application</h2>
             
+            <!-- 2. IMAGE -->
             <section>
-                <h3>Project Overview</h3>
-                <p><strong>Institution:</strong> University of Central Florida</p>
-                <p><strong>Location:</strong> Orlando, FL</p>
-                <p><strong>Duration:</strong> <time datetime="2024-08">August 2024</time> – <time datetime="2024-12">December 2024</time></p>
-            </section>
-
-            <section>
-                <h3>Project Image</h3>
                 <figure>
-                    <img src="project2.jpeg" alt="MySQL command line interface showing the petboarding database with 16 tables including board, breed, client, pet, employee, and other related entities. A query result displays pet information with columns for ID, breedId, petTypeId, name, age, weight, and colorId for 44 pets in the system">
-                    <figcaption>Pet Boarding Database Schema and Sample Query Results showing comprehensive data management</figcaption>
+                    <img src="project1.png" alt="Enterprise web application login page with MySQL database schema viewer">
+                    <figcaption>User Authentication Interface with MySQL Backend showing database tables for jobs, parts, shipments, and suppliers</figcaption>
                 </figure>
             </section>
 
+            <!-- 3. DESCRIPTION -->
             <section>
                 <h3>Project Description</h3>
                 <p>
-                    This project involved designing and implementing a comprehensive relational database system for 
-                    managing a pet boarding business using MySQL. The database system handles all aspects of pet 
-                    boarding operations including pet information, client management, employee tracking, boarding 
-                    schedules, and financial transactions.
+                    This project involved developing a comprehensive three-tier distributed enterprise web application 
+                    using Java Servlets, JavaServer Pages (JSP), Apache Tomcat server, and a MySQL database backend. 
+                    The application follows enterprise architecture patterns with clear separation between the 
+                    presentation layer, business logic layer, and data access layer.
                 </p>
                 <p>
-                    The system encompasses 16 interconnected tables that manage diverse entities including pets, breeds, 
-                    pet types, colors, clients, employees, positions, work schedules, boarding records, and various 
-                    lookup tables. The database design follows normalization principles to ensure data integrity, 
-                    eliminate redundancy, and maintain referential integrity across all relationships.
+                    The system implements sophisticated role-based authentication and authorization mechanisms that 
+                    support multiple user levels, each with distinct database privileges and access rights. Different 
+                    users can log in with varying levels of access to the database operations and application features, 
+                    ensuring proper security and data protection.
                 </p>
                 <p>
-                    A key component of this project was the implementation of advanced database features including stored 
-                    functions and triggers to automate business logic. These include automatic payroll deposit calculations 
-                    based on employee work schedules and position rates, as well as data validation triggers that enforce 
-                    business rules and maintain data consistency across the system.
+                    The application manages a supply chain system with multiple interconnected entities including jobs, 
+                    parts, shipments, and suppliers. Server-side business logic is implemented using Java Servlets to 
+                    handle HTTP requests, process user input, and manage application flow. Database operations are 
+                    executed using JDBC with prepared statements and callable statements to ensure both security 
+                    (preventing SQL injection) and optimal performance.
                 </p>
                 <p>
-                    The project required creating comprehensive Entity-Relationship (ER) diagrams to visualize the database 
-                    structure, writing complex SQL queries involving multiple table joins and aggregations, and developing 
-                    structured test cases to validate data integrity and query correctness throughout the development process.
+                    The project demonstrates enterprise-level development practices including session management for 
+                    maintaining user state, transaction management for ensuring data consistency, proper error handling 
+                    across all application layers, and separation of concerns through the Model-View-Controller (MVC) 
+                    design pattern.
                 </p>
             </section>
 
-            <section>
-                <h3>Database Schema</h3>
-                <p>The database consists of 16 tables organized into functional groups:</p>
-                <ul>
-                    <li><strong>Pet Management:</strong> pet, breed, pettype, color - storing detailed information about boarded animals</li>
-                    <li><strong>Client Management:</strong> client, clientpet, citystatezip - managing client information and their pets</li>
-                    <li><strong>Employee Management:</strong> employee, position, employeeposition - tracking staff and their roles</li>
-                    <li><strong>Scheduling:</strong> workschedule, workscheduleview - managing employee work hours and shifts</li>
-                    <li><strong>Boarding Operations:</strong> board - tracking pet boarding reservations and stays</li>
-                    <li><strong>Financial:</strong> employeedeposit, ratetype, timecard - managing payroll and billing</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Technical Implementation</h3>
-                <ul>
-                    <li><strong>Database Management System:</strong> MySQL for robust relational data management</li>
-                    <li><strong>Schema Design:</strong> Normalized database structure following 3NF principles</li>
-                    <li><strong>Constraints:</strong> Primary keys, foreign keys, check constraints, and unique constraints</li>
-                    <li><strong>Relationships:</strong> One-to-many and many-to-many relationships with junction tables</li>
-                    <li><strong>Stored Functions:</strong> Custom functions for payroll calculations and business logic</li>
-                    <li><strong>Triggers:</strong> Automated data validation and integrity enforcement</li>
-                    <li><strong>Views:</strong> Simplified data access through database views (e.g., workscheduleview)</li>
-                    <li><strong>Complex Queries:</strong> Multi-table joins, aggregations, subqueries, and conditional logic</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Key Features</h3>
-                <ul>
-                    <li>Comprehensive pet profile management with breed, type, age, weight, and color attributes</li>
-                    <li>Client relationship management linking owners to their pets</li>
-                    <li>Employee management system with position-based role assignments</li>
-                    <li>Work schedule tracking with automatic payroll calculations</li>
-                    <li>Boarding reservation system with date and timecard tracking</li>
-                    <li>Automated payroll deposit calculations using stored functions</li>
-                    <li>Data integrity enforcement through triggers and constraints</li>
-                    <li>Location management using city, state, and zip code lookup tables</li>
-                    <li>Rate type system for flexible pricing structures</li>
-                    <li>View-based data access for simplified query operations</li>
-            </section>
-
-            <section>
-                <h3>Database Objects Developed</h3>
-                <ul>
-                    <li><strong>Stored Functions:</strong> Automated business logic for payroll calculations and data transformations</li>
-                    <li><strong>Triggers:</strong> Before/After INSERT, UPDATE, DELETE triggers for data validation and integrity</li>
-                    <li><strong>Views:</strong> Abstraction layer providing simplified access to complex multi-table queries</li>
-                    <li><strong>Indexes:</strong> Performance optimization for frequently queried columns</li>
-                    <li><strong>Constraints:</strong> Comprehensive constraint definitions ensuring data quality and referential integrity</li>
-                </ul>
-            </section>
-
+            <!-- 4. SKILLS LEARNED -->
             <section>
                 <h3>Skills Learned</h3>
                 <ul>
-                    <li><strong>Database Design:</strong> Creating normalized relational database schemas following best practices and normal forms</li>
-                    <li><strong>ER Modeling:</strong> Developing comprehensive Entity-Relationship diagrams to visualize database structure and relationships</li>
-                    <li><strong>SQL Proficiency:</strong> Writing complex SQL queries including multi-table joins, subqueries, aggregations, and conditional logic</li>
-                    <li><strong>Stored Procedures & Functions:</strong> Implementing business logic at the database level for automated processing</li>
-                    <li><strong>Trigger Development:</strong> Creating database triggers for automatic data validation and integrity enforcement</li>
-                    <li><strong>Data Integrity:</strong> Implementing constraints, foreign keys, and referential integrity rules</li>
-                    <li><strong>Database Optimization:</strong> Understanding indexing, query optimization, and performance tuning</li>
-                    <li><strong>Normalization:</strong> Applying normalization principles to eliminate redundancy and improve data structure</li>
-                    <li><strong>Testing & Validation:</strong> Developing test cases to verify database functionality and data accuracy</li>
-                    <li><strong>MySQL Administration:</strong> Managing database users, privileges, and system configurations</li>
-                    <li><strong>Data Modeling:</strong> Translating real-world business requirements into effective database designs</li>
-                    <li><strong>Query Optimization:</strong> Analyzing and improving query performance through proper indexing and query structure</li>
-                    <li><strong>Transaction Management:</strong> Understanding ACID properties and implementing transactional operations</li>
-                    <li><strong>View Design:</strong> Creating database views to simplify complex queries and provide data abstraction</li>
+                    <li>Understanding and implementing three-tier architecture patterns for scalable enterprise applications</li>
+                    <li>Developing web applications using Java Servlets and JavaServer Pages (JSP)</li>
+                    <li>Implementing database connectivity using JDBC with connection pooling and resource management</li>
+                    <li>Designing and implementing role-based authentication and authorization systems</li>
+                    <li>Deploying and configuring web applications on Apache Tomcat server</li>
+                    <li>Writing secure SQL queries using prepared statements and callable statements</li>
+                    <li>Managing HTTP sessions and maintaining user state across multiple requests</li>
+                    <li>Separating business logic from presentation layer using server-side processing</li>
+                    <li>Implementing security best practices including SQL injection prevention and input validation</li>
+                    <li>Working with normalized relational database schemas and maintaining referential integrity</li>
+                    <li>Applying Model-View-Controller (MVC) design pattern in enterprise web development</li>
+                    <li>Implementing comprehensive error handling and validation across application tiers</li>
                 </ul>
-            </section>
-
-            <section>
-                <h3>Complex Queries Implemented</h3>
-                <ul>
-                    <li>Multi-table joins connecting pets, clients, breeds, colors, and boarding information</li>
-                    <li>Aggregate functions for calculating total boarding time, revenue, and employee hours</li>
-                    <li>Subqueries for finding pets with specific characteristics or boarding histories</li>
-                    <li>Date-based queries for schedule management and occupancy tracking</li>
-                    <li>Group by operations for summarizing data by breed, client, or time period</li>
-                    <li>Conditional logic using CASE statements for custom reporting</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Business Logic Automation</h3>
-                <p><strong>Payroll Deposit Calculation Function:</strong></p>
-                <p>
-                    Developed a stored function that automatically calculates employee payroll deposits based on 
-                    their work schedule and position rate type. The function aggregates hours worked, applies 
-                    the appropriate rate, and computes the deposit amount, eliminating manual calculation errors 
-                    and ensuring consistent payroll processing.
-                </p>
-                
-                <p><strong>Data Validation Triggers:</strong></p>
-                <p>
-                    Implemented triggers that enforce business rules such as preventing negative values for pet 
-                    weights, validating age ranges, ensuring appointment dates are in the future, and maintaining 
-                    referential integrity when updating or deleting records across related tables.
-                </p>
-            </section>
-
-            <section>
-                <h3>Technical Challenges & Solutions</h3>
-                <ul>
-                    <li><strong>Challenge:</strong> Managing complex many-to-many relationships between clients and pets
-                        <br><strong>Solution:</strong> Implemented junction table (clientpet) with proper foreign key constraints</li>
-                    <li><strong>Challenge:</strong> Calculating payroll across multiple work schedule entries
-                        <br><strong>Solution:</strong> Created stored function with aggregation logic and rate type joins</li>
-                    <li><strong>Challenge:</strong> Maintaining data consistency across 16 interconnected tables
-                        <br><strong>Solution:</strong> Utilized comprehensive constraint system and validation triggers</li>
-                    <li><strong>Challenge:</strong> Optimizing query performance for reports spanning multiple tables
-                        <br><strong>Solution:</strong> Designed database views and implemented strategic indexing</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Testing & Validation</h3>
-                <p>
-                    Developed comprehensive test cases to validate database functionality including:
-                </p>
-                <ul>
-                    <li>Data insertion tests verifying constraint enforcement</li>
-                    <li>Query result validation ensuring accuracy of complex joins</li>
-                    <li>Trigger functionality tests confirming automated business logic</li>
-                    <li>Stored function tests validating calculation accuracy</li>
-                    <li>Referential integrity tests ensuring proper cascade operations</li>
-                </ul>
-            </section>
-
-            <section>
-                <h3>Project Outcomes</h3>
-                <p>
-                    Successfully designed and implemented a production-ready database system capable of managing all 
-                    aspects of a pet boarding business. The project demonstrates strong understanding of relational 
-                    database design principles, SQL programming, and the implementation of automated business logic 
-                    at the database level. The system provides a solid foundation for building a complete pet boarding 
-                    management application.
-                </p>
             </section>
         </article>
 
