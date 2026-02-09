@@ -1,0 +1,154 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Jump Menu - Fixed left sidebar */
+.jump-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 15%;
+    height: 100vh;
+    background-color: #DAA520;
+    padding: 20px;
+    z-index: 100;
+}
+
+.jump-menu h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.jump-menu ul {
+    list-style: none;
+}
+
+.jump-menu li {
+    margin-bottom: 15px;
+}
+
+.jump-menu a {
+    color: #0000EE;
+    text-decoration: underline;
+    font-size: 1.1em;
+}
+
+.jump-menu a:hover {
+    color: #551A8B;
+}
+
+/* Header - Fixed at top, offset by jump menu width */
+header {
+    position: fixed;
+    top: 0;
+    left: 15%;
+    width: 85%;
+    background-color: #FF0000;
+    z-index: 99;
+    padding: 20px 0;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* Navigation buttons */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    padding: 0;
+}
+
+nav a {
+    flex: 1;
+    text-align: center;
+    padding: 15px 20px;
+    background-color: #0000FF;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border: 2px solid #000;
+}
+
+nav a:hover {
+    background-color: #0000CC;
+}
+
+/* Main content area - offset by jump menu and header */
+main {
+    margin-left: 15%;
+    margin-top: 140px;
+    padding: 30px;
+    min-height: calc(100vh - 140px);
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* Article container - responsive grid */
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+/* Individual articles */
+article {
+    width: 300px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+article h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+article p {
+    text-align: justify;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+article a {
+    color: #0000EE;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+/* Thank you message - Fixed bottom-right */
+.thank-you {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #87CEEB;
+    padding: 20px 40px;
+    border: 2px solid #4682B4;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    z-index: 98;
+}
