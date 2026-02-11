@@ -1,0 +1,216 @@
+/* Basic page setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Navigation sidebar */
+nav#menuItems {
+    width: 230px;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+nav#menuItems button {
+    padding: 15px;
+    background-color: blue;
+    color: white;
+    border: 1px solid #333;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Navigation button hover - background color changes */
+nav#menuItems button:hover {
+    background-color: #DAA520;
+}
+
+/* Jump menu - hidden by default */
+#jumpMenu {
+    display: none;
+    list-style: none;
+    background-color: #DAA520;
+    margin: 0;
+    padding: 0;
+}
+
+/* Show jump menu when hovering over Recent Articles button */
+#recentArticles:hover + #jumpMenu,
+#jumpMenu:hover {
+    display: block;
+}
+
+#jumpMenu li {
+    border-bottom: 1px solid #999;
+}
+
+#jumpMenu a {
+    display: block;
+    padding: 8px 15px;
+    color: blue;
+    text-decoration: none;
+    background-color: #DAA520;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Jump menu item hover - font color and background color change */
+#jumpMenu a:hover {
+    background-color: blue;
+    color: red;
+}
+
+/* Main content area */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: red;
+    padding: 40px;
+    text-align: center;
+}
+
+header p {
+    font-size: 48px;
+    font-weight: bold;
+    color: #000;
+}
+
+h1 {
+    text-align: center;
+    padding: 40px;
+    font-size: 36px;
+}
+
+/* Articles container */
+#container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 0 40px;
+}
+
+/* Article styling */
+article {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    /* Start with light colored text */
+    color: #ccc;
+    /* Transition for hover effects - 2 seconds */
+    transition: color 2s ease, max-height 2s ease;
+    max-height: 350px;
+    overflow: hidden;
+}
+
+/* Article hover - text becomes darker and article expands */
+article:hover {
+    color: #000;
+    max-height: 600px;
+}
+
+article h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: inherit;
+}
+
+article p {
+    text-align: justify;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* First letter of article's main text - Times New Roman, 36px */
+article p:first-of-type::first-letter {
+    font-family: 'Times New Roman', serif;
+    font-size: 36px;
+    float: left;
+    line-height: 1;
+    margin-right: 5px;
+}
+
+/* Links inside articles */
+article a {
+    color: blue;
+    text-decoration: none;
+}
+
+/* Arrow icon for Google links using ::after pseudo-element */
+article a[href*="google.com"]::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    /* SVG arrow icon from Wikipedia */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBmaWxsPSIjMDA3YmZmIiBkPSJNIDYgMyBMIDYgNSBMIDEwIDUgTCAyIDEzIEwgMyAxNCBMIDExIDYgTCAxMSAxMCBMIDEzIDEwIEwgMTMgMyBaIi8+PC9zdmc+');
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+/* Thank you section */
+#thanks {
+    background-color: lightblue;
+    padding: 20px;
+    text-align: center;
+    margin: 40px;
+}
+
+#thanks a {
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 30px 40px;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+address {
+    font-style: normal;
+}
+
+address div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 20px;
+}
+
+address span {
+    display: inline-block;
+}
+
+address a {
+    color: lightblue;
+    text-decoration: none;
+}
+
+address a:hover {
+    text-decoration: underline;
+}
