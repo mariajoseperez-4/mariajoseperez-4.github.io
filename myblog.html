@@ -115,21 +115,27 @@
             font-size: 36px;
         }
 
+        /* Container for articles and thank you box */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+
         /* Articles grid */
         .articles {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 30px;
-            margin-bottom: 40px;
+            flex: 1;
         }
 
         .article {
-            background-color: white;
+            background-color: transparent;
             padding: 20px;
             color: #ccc;
             transition: all 2s ease;
             cursor: pointer;
-            max-height: 450px;
+            max-height: 500px;
             overflow: hidden;
         }
 
@@ -190,8 +196,10 @@
             padding: 20px;
             text-align: center;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            width: 350px;
+            height: fit-content;
         }
 
         .thank-you h3 {
@@ -234,47 +242,49 @@
             <div class="content">
                 <h2>Recent Journal Articles</h2>
 
-                <div class="articles">
-                    <div class="article" id="article1">
-                        <h3>Article 1</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eros magna, efficitur a facilisis id, venenatis in elit. Nulla dictum vel metus at auctor. Integer venenatis pretium mauris id ultrices. Duis sagittis ligula eget erat hendrerit, ut lobortis libero mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie vehicula quam, non accumsan odio pulvinar ac. Quisque placerat, lorem sed mattis rhoncus, purus tortor sodales tortor, sed viverra turpis orci in neque. Fusce ullamcorper euismod diam tincidunt vehicula. Quisque id dui tincidunt, porta tortor id, mattis quam. Donec et feugiat ipsum. Morbi sapien leo, mattis quis magna eget, vehicula tempus mauris</p>
-                        <a href="https://www.google.com">Read more...</a>
-                    </div>
+                <div class="main-content">
+                    <div class="articles">
+                        <div class="article" id="article1">
+                            <h3>Article 1</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eros magna, efficitur a facilisis id, venenatis in elit. Nulla dictum vel metus at auctor. Integer venenatis pretium mauris id ultrices. Duis sagittis ligula eget erat hendrerit, ut lobortis libero mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie vehicula quam, non accumsan odio pulvinar ac. Quisque placerat, lorem sed mattis rhoncus, purus tortor sodales tortor, sed viverra turpis orci in neque. Fusce ullamcorper euismod diam tincidunt vehicula. Quisque id dui tincidunt, porta tortor id, mattis quam. Donec et feugiat ipsum. Morbi sapien leo, mattis quis magna eget, vehicula tempus mauris</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
 
-                    <div class="article" id="article2">
-                        <h3>Article 2</h3>
-                        <p>Sed sed neque eget justo venenatis rutrum vitae quis ante. Sed ut iaculis dui, eget commodo nisi. Etiam et arcu ipsum. Praesent porta eu nisi a malesuada. Nunc cursus facilisis ligula, in porttitor nisl pulvinar ultrices. Pellentesque consectetur venenatis ex, non lacinia metus lobortis vel. Cras dui urna, dapibus non ante quis, tristique egestas ex. Fusce ornare, neque in interdum condimentum, justo magna accumsan nunc, vitae feugiat felis tellus vitae justo. In hac habitasse platea dictumst. Sed id magna feugiat, condimentum leo venenatis, tempor quam. Pellentesque mattis scelerisque turpis efficitur fermentum. Cras eu metus bibendum, egestas arcu non, aliquet elit. Morbi ullamcorper mauris aliquet eros eleifend, ac gravida turpis viverra. Cras lacinia leo a est sagittis, nec commodo felis volutpat</p>
-                        <a href="https://www.google.com">Read more...</a>
-                    </div>
+                        <div class="article" id="article2">
+                            <h3>Article 2</h3>
+                            <p>Sed sed neque eget justo venenatis rutrum vitae quis ante. Sed ut iaculis dui, eget commodo nisi. Etiam et arcu ipsum. Praesent porta eu nisi a malesuada. Nunc cursus facilisis ligula, in porttitor nisl pulvinar ultrices. Pellentesque consectetur venenatis ex, non lacinia metus lobortis vel. Cras dui urna, dapibus non ante quis, tristique egestas ex. Fusce ornare, neque in interdum condimentum, justo magna accumsan nunc, vitae feugiat felis tellus vitae justo. In hac habitasse platea dictumst. Sed id magna feugiat, condimentum leo venenatis, tempor quam. Pellentesque mattis scelerisque turpis efficitur fermentum. Cras eu metus bibendum, egestas arcu non, aliquet elit. Morbi ullamcorper mauris aliquet eros eleifend, ac gravida turpis viverra. Cras lacinia leo a est sagittis, nec commodo felis volutpat</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
 
-                    <div class="article" id="article3">
-                        <h3>Article 3</h3>
-                        <p>Vivamus lectus ante, venenatis sed placerat id, pretium a est. Nulla facilisi. Curabitur vestibulum malesuada lectus, nec gravida nibh blandit ultrices. Curabitur euismod neque eget volutpat lacinia. Donec dictum luctus placerat. Vestibulum et mi quis tortor congue suscipit non at libero. Sed accumsan blandit ex vitae tempor. Nunc vel ligula sapien. Pellentesque sit amet justo nec quam gravida pellentesque. Sed eget consequat ligula. Maecenas et nunc sed ligula pellentesque blandit id nec risus. Duis posuere nisl nibh, fringilla aliquet neque luctus ullamcorper</p>
-                        <a href="https://www.google.com">Read more...</a>
-                    </div>
+                        <div class="article" id="article3">
+                            <h3>Article 3</h3>
+                            <p>Vivamus lectus ante, venenatis sed placerat id, pretium a est. Nulla facilisi. Curabitur vestibulum malesuada lectus, nec gravida nibh blandit ultrices. Curabitur euismod neque eget volutpat lacinia. Donec dictum luctus placerat. Vestibulum et mi quis tortor congue suscipit non at libero. Sed accumsan blandit ex vitae tempor. Nunc vel ligula sapien. Pellentesque sit amet justo nec quam gravida pellentesque. Sed eget consequat ligula. Maecenas et nunc sed ligula pellentesque blandit id nec risus. Duis posuere nisl nibh, fringilla aliquet neque luctus ullamcorper</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
 
-                    <div class="article" id="article4">
-                        <h3>Article 4</h3>
-                        <p>Proin mi ipsum, egestas in diam nec, volutpat scelerisque est. Proin quis ullamcorper lorem. Quisque fringilla non magna ac suscipit. Sed scelerisque, massa ut aliquam faucibus, nisi ante volutpat velit, vel pretium mi erat ut ante. Pellentesque quis tincidunt sem, vel semper libero. Praesent ac diam diam. Etiam tristique pellentesque arcu eget congue. Curabitur sed felis lorem. Vivamus elementum posuere tempor. Quisque lacus massa, auctor nec ex in, egestas ultrices ex. Morbi interdum congue libero, ut rhoncus sapien posuere vitae. Cras pellentesque dignissim ullamcorper. Nunc in aliquam sem. Fusce porttitor, metus non commodo ullamcorper, lacus metus convallis eros, vel mollis mauris lorem egestas leo. Nam ex augue, gravida at vehicula vitae, tincidunt nec dui</p>
-                        <a href="https://www.google.com">Read more...</a>
-                    </div>
+                        <div class="article" id="article4">
+                            <h3>Article 4</h3>
+                            <p>Proin mi ipsum, egestas in diam nec, volutpat scelerisque est. Proin quis ullamcorper lorem. Quisque fringilla non magna ac suscipit. Sed scelerisque, massa ut aliquam faucibus, nisi ante volutpat velit, vel pretium mi erat ut ante. Pellentesque quis tincidunt sem, vel semper libero. Praesent ac diam diam. Etiam tristique pellentesque arcu eget congue. Curabitur sed felis lorem. Vivamus elementum posuere tempor. Quisque lacus massa, auctor nec ex in, egestas ultrices ex. Morbi interdum congue libero, ut rhoncus sapien posuere vitae. Cras pellentesque dignissim ullamcorper. Nunc in aliquam sem. Fusce porttitor, metus non commodo ullamcorper, lacus metus convallis eros, vel mollis mauris lorem egestas leo. Nam ex augue, gravida at vehicula vitae, tincidunt nec dui</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
 
-                    <div class="article" id="article5">
-                        <h3>Article 5</h3>
-                        <p>Suspendisse potenti. Sed vel augue nec urna varius bibendum. Morbi quis lorem ac nisi euismod hendrerit. Praesent facilisis eros vitae diam consectetur, vel vestibulum orci facilisis. Integer nec felis id augue tincidunt pulvinar.</p>
-                        <a href="https://www.google.com">Read more...</a>
-                    </div>
+                        <div class="article" id="article5">
+                            <h3>Article 5</h3>
+                            <p>Suspendisse potenti. Sed vel augue nec urna varius bibendum. Morbi quis lorem ac nisi euismod hendrerit. Praesent facilisis eros vitae diam consectetur, vel vestibulum orci facilisis. Integer nec felis id augue tincidunt pulvinar.</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
 
-                    <div class="article" id="article6">
-                        <h3>Article 6</h3>
-                        <p>Phasellus euismod magna quis ligula varius, a dignissim eros lacinia. Vivamus in orci sed nisi hendrerit sagittis. Fusce eget ipsum ac nunc bibendum cursus. Nullam vehicula risus id tortor vehicula pharetra.</p>
-                        <a href="https://www.google.com">Read more...</a>
-                    </div>
+                        <div class="article" id="article6">
+                            <h3>Article 6</h3>
+                            <p>Phasellus euismod magna quis ligula varius, a dignissim eros lacinia. Vivamus in orci sed nisi hendrerit sagittis. Fusce eget ipsum ac nunc bibendum cursus. Nullam vehicula risus id tortor vehicula pharetra.</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
 
-                    <div class="article" id="article7">
-                        <h3>Article 7</h3>
-                        <p>Maecenas venenatis turpis vel sapien condimentum, at porttitor ipsum euismod. Donec ac enim vitae lorem vestibulum ultricies. Sed tincidunt nisl eget metus consectetur, vel consequat turpis fermentum.</p>
-                        <a href="https://www.google.com">Read more...</a>
+                        <div class="article" id="article7">
+                            <h3>Article 7</h3>
+                            <p>Maecenas venenatis turpis vel sapien condimentum, at porttitor ipsum euismod. Donec ac enim vitae lorem vestibulum ultricies. Sed tincidunt nisl eget metus consectetur, vel consequat turpis fermentum.</p>
+                            <a href="https://www.google.com">Read more...</a>
+                        </div>
                     </div>
 
                     <div class="thank-you">
