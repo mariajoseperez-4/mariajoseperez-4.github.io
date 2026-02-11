@@ -67,7 +67,7 @@ nav#menuItems button:hover {
 /* Jump menu item hover - font color and background color change */
 #jumpMenu a:hover {
     background-color: blue;
-    color: red;
+    color: black;
 }
 
 /* Main content area */
