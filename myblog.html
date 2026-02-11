@@ -86,7 +86,7 @@
         /* Jump menu item hover effect */
         .jump-menu a:hover {
             background-color: blue;
-            color: black;
+            color: black !important;
         }
 
         /* Main content area */
@@ -129,7 +129,7 @@
             color: #ccc;
             transition: all 2s ease;
             cursor: pointer;
-            max-height: 350px;
+            max-height: 450px;
             overflow: hidden;
         }
 
@@ -189,12 +189,15 @@
             background-color: lightblue;
             padding: 20px;
             text-align: center;
-            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .thank-you h3 {
             color: blue;
             font-size: 24px;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -273,10 +276,10 @@
                         <p>Maecenas venenatis turpis vel sapien condimentum, at porttitor ipsum euismod. Donec ac enim vitae lorem vestibulum ultricies. Sed tincidunt nisl eget metus consectetur, vel consequat turpis fermentum.</p>
                         <a href="https://www.google.com">Read more...</a>
                     </div>
-                </div>
 
-                <div class="thank-you">
-                    <h3>Thank you for visiting!</h3>
+                    <div class="thank-you">
+                        <h3>Thank you for visiting!</h3>
+                    </div>
                 </div>
             </div>
         </main>
