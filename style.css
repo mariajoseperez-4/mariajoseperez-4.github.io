@@ -1,0 +1,359 @@
+/* ========================================
+   GLOBAL STYLES & RESET
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px 10px;
+}
+
+/* ========================================
+   MOBILE-FIRST DESIGN (412px)
+   ======================================== */
+
+/* Header Section */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header nav {
+    margin-top: 15px;
+}
+
+/* Main Container */
+main {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+section h2 {
+    font-size: 1.5em;
+    color: #667eea;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #667eea;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Contact Information Section */
+section:first-child {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+}
+
+section:first-child ul {
+    list-style: none;
+}
+
+section:first-child li {
+    margin: 10px 0;
+    font-size: 0.95em;
+}
+
+section:first-child a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+section:first-child a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* Objective Section */
+section:nth-child(2) p {
+    text-align: justify;
+    line-height: 1.8;
+    color: #555;
+    padding: 15px;
+    background: #f8f9fa;
+    border-left: 4px solid #667eea;
+    border-radius: 4px;
+}
+
+/* Article Elements (Experience, Projects, Skills) */
+article {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+article h3 {
+    font-size: 1.2em;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+article h3 a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+article h3 a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+article p {
+    margin: 8px 0;
+    color: #555;
+}
+
+article p strong {
+    color: #333;
+}
+
+/* Lists inside articles */
+article ul {
+    margin-top: 12px;
+    padding-left: 25px;
+}
+
+article li {
+    margin: 10px 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Time elements */
+time {
+    color: #666;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-size: 0.9em;
+}
+
+/* ========================================
+   TABLET/DESKTOP DESIGN (768px+)
+   ======================================== */
+
+@media screen and (min-width: 768px) {
+    
+    body {
+        padding: 40px 20px;
+    }
+
+    /* Header */
+    header {
+        padding: 60px 40px;
+    }
+
+    header h1 {
+        font-size: 3em;
+    }
+
+    /* Main Container */
+    main {
+        max-width: 1200px;
+        padding: 40px 60px;
+    }
+
+    /* Section Headings */
+    section h2 {
+        font-size: 1.8em;
+    }
+
+    /* Contact Info - Horizontal Layout */
+    section:first-child {
+        padding: 25px 40px;
+    }
+
+    section:first-child ul {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+
+    section:first-child li {
+        margin: 5px 0;
+    }
+
+    /* Objective with larger text */
+    section:nth-child(2) p {
+        padding: 25px;
+        font-size: 1.05em;
+    }
+
+    /* Articles with enhanced spacing */
+    section article {
+        padding: 25px;
+    }
+
+    /* Larger hover effect */
+    article:hover {
+        transform: translateX(10px);
+    }
+
+    /* Footer */
+    footer {
+        padding: 35px;
+    }
+}
+
+/* ========================================
+   LARGE DESKTOP (1400px+) for 1920px
+   ======================================== */
+
+@media screen and (min-width: 1400px) {
+    
+    /* Main Container - Wider */
+    main {
+        max-width: 1400px;
+        padding: 50px 80px;
+    }
+
+    /* Larger Header */
+    header h1 {
+        font-size: 3.5em;
+    }
+
+    /* Section Headings */
+    section h2 {
+        font-size: 2em;
+    }
+
+    /* Contact Info */
+    section:first-child ul {
+        gap: 80px;
+    }
+
+    /* Skills Section - Three Column Layout */
+    section:last-of-type {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    section:last-of-type h2 {
+        grid-column: 1 / -1;
+    }
+
+    /* Even larger hover effect */
+    article:hover {
+        transform: translateX(15px);
+    }
+}
+
+/* ========================================
+   ADDITIONAL ENHANCEMENTS
+   ======================================== */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Link Transitions */
+a {
+    transition: all 0.3s ease;
+}
+
+/* Focus States for Accessibility */
+a:focus,
+button:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    header {
+        background: #667eea;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    main {
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    article {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}
+
+/* Selection Color */
+::selection {
+    background: #667eea;
+    color: white;
+}
+
+::-moz-selection {
+    background: #667eea;
+    color: white;
+}
