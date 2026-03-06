@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokémon Team Builder</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      background: #a8d8ea;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 12px 40px;
+    }
+
+    #page-wrapper {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 10px;
+    }
+
+    /* ── WHITE CARD WITH GOLD BORDER ── */
+    #card {
+      background: #ffffff;
+      border: 4px solid #d4a000;
+      border-radius: 20px;
+      padding: 20px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Search row */
+    #search-label {
+      font-size: 14px;
+      color: #000;
+      text-align: center;
+    }
+
+    #search-row-inner {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    #pokemon-input {
+      padding: 3px 6px;
+      border: 1px solid #999;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      width: 200px;
+    }
+
+    #find-btn {
+      padding: 3px 12px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      border: 1px solid #999;
+      cursor: pointer;
+    }
+    #find-btn:hover { background: #ddd; }
+
+    /* Sprite */
+    #sprite-container {
+      width: 200px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #sprite {
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: pixelated;
+      display: none;
+    }
+
+    /* Pixelated placeholder */
+    #placeholder {
+      width: 110px;
+      height: 155px;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 6px,
+          rgba(0,0,0,0.07) 6px,
+          rgba(0,0,0,0.07) 7px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 6px,
+          rgba(0,0,0,0.07) 6px,
+          rgba(0,0,0,0.07) 7px
+        ),
+        linear-gradient(135deg,
+          #c4b0e0 0%, #e8c4b0 20%, #b0c4e8 40%,
+          #e0b0c4 60%, #c4e0b0 80%, #b0e0e0 100%
+        );
+    }
+
+    /* Audio */
+    #pokemon-cry {
+      width: 280px;
+      display: none;
+    }
+
+    #audio-placeholder {
+      width: 280px;
+      height: 32px;
+      background: #e8e8e8;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      font-size: 12px;
+      color: #555;
+    }
+    #audio-placeholder .ap-bar {
+      flex: 1;
+      height: 3px;
+      background: #aaa;
+      border-radius: 2px;
+    }
+
+    /* Dropdowns */
+    #moves-section {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 340px;
+    }
+
+    .moves-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .moves-row select {
+      flex: 1;
+      padding: 3px 4px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      border: 1px solid #999;
+      background: #fff;
+    }
+
+    /* Add to Team */
+    #add-btn {
+      padding: 4px 16px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      border: 1px solid #999;
+      cursor: pointer;
+    }
+    #add-btn:hover { background: #ddd; }
+
+    #error-msg {
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+
+    /* ── TEAM TABLE ── */
+    #team-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #000;
+      display: none;
+      margin-top: 4px;
+      align-self: stretch;
+    }
+
+    #team-table td {
+      padding: 8px 10px;
+      vertical-align: middle;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      border-left: none;
+      border-right: none;
+    }
+
+    #team-table tr:first-child td { border-top: none; }
+
+    .team-sprite {
+      width: 130px;
+      height: 130px;
+      image-rendering: pixelated;
+      display: block;
+    }
+
+    .team-moves {
+      list-style: disc;
+      font-size: 14px;
+      line-height: 2;
+      display: inline-block;
+      text-align: left;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="page-wrapper">
+
+  <!-- ── CARD ── -->
+  <div id="card">
+
+    <div id="search-label">Name or ID</div>
+    <div id="search-row-inner">
+      <input type="text" id="pokemon-input" />
+      <button id="find-btn" onclick="findPokemon()">Find</button>
+    </div>
+
+    <p id="error-msg">Pokémon not found!</p>
+
+    <div id="sprite-container">
+      <div id="placeholder"></div>
+      <img id="sprite" src="" alt="Pokemon sprite" />
+    </div>
+
+    <div id="audio-placeholder">
+      <span>▶</span>
+      <span>0:00 / 0:00</span>
+      <div class="ap-bar"></div>
+      <span>🔊</span>
+      <span>⋮</span>
+    </div>
+    <audio id="pokemon-cry" controls></audio>
+
+    <div id="moves-section">
+      <div class="moves-row">
+        <select id="move1"></select>
+        <select id="move3"></select>
+      </div>
+      <div class="moves-row">
+        <select id="move2"></select>
+        <select id="move4"></select>
+      </div>
+    </div>
+
+    <button id="add-btn" onclick="addToTeam()">Add to Team</button>
+
+    <!-- Team table inside the gold card -->
+    <table id="team-table" style="width:100%;">
+      <tbody id="team-body"></tbody>
+    </table>
+
+  </div><!-- /card -->
+
+</div><!-- /page-wrapper -->
+
+<script>
+  const cache = {};
+  let currentPokemon = null;
+
+  document.getElementById('pokemon-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') findPokemon();
+  });
+
+  async function findPokemon() {
+    const query = document.getElementById('pokemon-input').value.trim().toLowerCase();
+    if (!query) return;
+
+    document.getElementById('error-msg').style.display = 'none';
+
+    if (cache[query]) { displayPokemon(cache[query]); return; }
+
+    try {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+      if (!res.ok) throw new Error('Not found');
+      const data = await res.json();
+      cache[query] = data;
+      displayPokemon(data);
+    } catch (err) {
+      document.getElementById('error-msg').style.display = 'block';
+      resetUI();
+    }
+  }
+
+  function displayPokemon(data) {
+    currentPokemon = data;
+
+    // Sprite
+    document.getElementById('placeholder').style.display = 'none';
+    const sprite = document.getElementById('sprite');
+    const spriteUrl = data.sprites.front_default;
+    if (spriteUrl) { sprite.src = spriteUrl; sprite.style.display = 'block'; }
+
+    // Audio
+    const cryUrl = data.cries?.latest || data.cries?.legacy;
+    const audio = document.getElementById('pokemon-cry');
+    if (cryUrl) {
+      audio.src = cryUrl;
+      audio.load();
+      audio.style.display = 'block';
+      document.getElementById('audio-placeholder').style.display = 'none';
+    }
+
+    // Moves
+    const moves = data.moves.map(m => m.move.name);
+    ['move1','move2','move3','move4'].forEach((id, idx) => {
+      const sel = document.getElementById(id);
+      sel.innerHTML = '';
+      moves.forEach((name, i) => {
+        const opt = document.createElement('option');
+        opt.value = name; opt.textContent = name;
+        if (i === idx) opt.selected = true;
+        sel.appendChild(opt);
+      });
+    });
+  }
+
+  function resetUI() {
+    document.getElementById('sprite').style.display = 'none';
+    document.getElementById('placeholder').style.display = 'block';
+    document.getElementById('pokemon-cry').style.display = 'none';
+    document.getElementById('audio-placeholder').style.display = 'flex';
+    currentPokemon = null;
+  }
+
+  function addToTeam() {
+    if (!currentPokemon) return;
+
+    const moves = ['move1','move2','move3','move4'].map(id =>
+      document.getElementById(id).value
+    );
+
+    const row = document.createElement('tr');
+
+    // Sprite cell
+    const imgCell = document.createElement('td');
+    imgCell.style.width = '72px';
+    imgCell.style.textAlign = 'center';
+    const img = document.createElement('img');
+    img.src = currentPokemon.sprites.front_default;
+    img.alt = currentPokemon.name;
+    img.className = 'team-sprite';
+    imgCell.appendChild(img);
+    row.appendChild(imgCell);
+
+    // Moves cell
+    const movesCell = document.createElement('td');
+    const ul = document.createElement('ul');
+    ul.className = 'team-moves';
+    moves.forEach(m => {
+      const li = document.createElement('li');
+      li.textContent = m;
+      ul.appendChild(li);
+    });
+    movesCell.appendChild(ul);
+    row.appendChild(movesCell);
+
+    document.getElementById('team-body').appendChild(row);
+    document.getElementById('team-table').style.display = 'table';
+  }
+</script>
+</body>
+</html>
