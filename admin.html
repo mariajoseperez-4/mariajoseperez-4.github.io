@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f3f4f6;
+    }
+
+    .header {
+      background-color: #66a9e8;
+      color: #111;
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      border-bottom: 3px solid #3e73c7;
+    }
+
+    .container {
+      display: flex;
+      min-height: calc(100vh - 76px);
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #3e73c7;
+      padding: 20px;
+      color: white;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .sidebar button {
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: white;
+      color: #3e73c7;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .sidebar button:hover {
+      background-color: #dce9ff;
+    }
+
+    .main {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .top-actions button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3e73c7;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .top-actions button:hover {
+      background-color: #2d5fad;
+    }
+
+    .card {
+      background-color: white;
+      border: 2px solid #9ccc65;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      background-color: #3e73c7;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .submit-btn:hover {
+      background-color: #2d5fad;
+    }
+
+    .posts-container {
+      display: grid;
+      gap: 15px;
+    }
+
+    .post {
+      background-color: #eef4ff;
+      border-left: 6px solid #3e73c7;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .post h3 {
+      margin-bottom: 8px;
+      color: #1f1f1f;
+    }
+
+    .post .type {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #2d5fad;
+    }
+
+    .post .content {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .edit-btn,
+    .delete-btn {
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+    }
+
+    .edit-btn {
+      background-color: orange;
+    }
+
+    .delete-btn {
+      background-color: crimson;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .empty-message {
+      color: #555;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Top Of Page: Admin</div>
+
+  <div class="container">
+    <div class="sidebar">
+      <h2>Admin Menu</h2>
+      <button onclick="showSection('createSection')">Create Post</button>
+      <button onclick="showSection('postsSection')">All Posts</button>
+      <button onclick="showMyPosts()">Your Posts</button>
+      <button onclick="alert('Team page can be added later')">Team</button>
+      <button onclick="clearForm()">Clear Form</button>
+    </div>
+
+    <div class="main">
+      <div class="top-actions">
+        <button onclick="showSection('createSection')">Create Posts</button>
+        <button onclick="showSection('postsSection')">Dashboard</button>
+        <button onclick="showMyPosts()">Your Posts</button>
+      </div>
+
+      <div id="createSection" class="card">
+        <h2>Create a Post</h2>
+
+        <form id="postForm">
+          <div class="form-group">
+            <label for="postTitle">Post Name</label>
+            <input type="text" id="postTitle" placeholder="Enter post title" required />
+          </div>
+
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" placeholder="Enter company name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="postType">What type?</label>
+            <select id="postType" required>
+              <option value="">Select type</option>
+              <option value="Hardware">Hardware</option>
+              <option value="Software">Software</option>
+              <option value="Update">Update</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="postContent">Post Message</label>
+            <textarea id="postContent" placeholder="Write the post message..." required></textarea>
+          </div>
+
+          <input type="hidden" id="editIndex" value="" />
+
+          <button type="submit" class="submit-btn">Post</button>
+        </form>
+      </div>
+
+      <div id="postsSection" class="card">
+        <h2>All Posts</h2>
+        <div id="postsContainer" class="posts-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const adminName = "Maria Perez";
+
+    const postForm = document.getElementById("postForm");
+    const postTitle = document.getElementById("postTitle");
+    const companyName = document.getElementById("companyName");
+    const postType = document.getElementById("postType");
+    const postContent = document.getElementById("postContent");
+    const editIndex = document.getElementById("editIndex");
+    const postsContainer = document.getElementById("postsContainer");
+
+    function getPosts() {
+      return JSON.parse(localStorage.getItem("adminPosts")) || [];
+    }
+
+    function savePosts(posts) {
+      localStorage.setItem("adminPosts", JSON.stringify(posts));
+    }
+
+    function renderPosts(postsToRender = null) {
+      const posts = postsToRender || getPosts();
+      postsContainer.innerHTML = "";
+
+      if (posts.length === 0) {
+        postsContainer.innerHTML = `<p class="empty-message">No posts yet.</p>`;
+        return;
+      }
+
+      posts.forEach((post, index) => {
+        const postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+
+        postDiv.innerHTML = `
+          <h3>${post.title}</h3>
+          <p class="type">Type: ${post.type}</p>
+          <p><strong>Company:</strong> ${post.company}</p>
+          <p><strong>Posted by:</strong> ${post.author}</p>
+          <p class="content">${post.content}</p>
+          <div class="post-actions">
+            <button class="edit-btn" onclick="editPost(${index})">Edit</button>
+            <button class="delete-btn" onclick="deletePost(${index})">Delete</button>
+          </div>
+        `;
+
+        postsContainer.appendChild(postDiv);
+      });
+    }
+
+    postForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const posts = getPosts();
+
+      const newPost = {
+        title: postTitle.value,
+        company: companyName.value,
+        type: postType.value,
+        content: postContent.value,
+        author: adminName
+      };
+
+      if (editIndex.value === "") {
+        posts.push(newPost);
+      } else {
+        posts[editIndex.value] = newPost;
+      }
+
+      savePosts(posts);
+      renderPosts();
+      clearForm();
+      showSection("postsSection");
+    });
+
+    function editPost(index) {
+      const posts = getPosts();
+      const post = posts[index];
+
+      postTitle.value = post.title;
+      companyName.value = post.company;
+      postType.value = post.type;
+      postContent.value = post.content;
+      editIndex.value = index;
+
+      showSection("createSection");
+    }
+
+    function deletePost(index) {
+      const posts = getPosts();
+      posts.splice(index, 1);
+      savePosts(posts);
+      renderPosts();
+    }
+
+    function clearForm() {
+      postForm.reset();
+      editIndex.value = "";
+    }
+
+    function showSection(sectionId) {
+      document.getElementById("createSection").classList.add("hidden");
+      document.getElementById("postsSection").classList.add("hidden");
+      document.getElementById(sectionId).classList.remove("hidden");
+    }
+
+    function showMyPosts() {
+      const posts = getPosts();
+      const myPosts = posts.filter(post => post.author === adminName);
+      showSection("postsSection");
+      renderPosts(myPosts);
+    }
+
+    renderPosts();
+  </script>
+
+</body>
+</html>
