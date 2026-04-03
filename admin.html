@@ -168,6 +168,65 @@
       font-size: 16px;
       line-height: 1.5;
       color: #222;
+      margin-bottom: 12px;
+    }
+
+    .post-actions {
+      margin-top: 10px;
+    }
+
+    .respond-btn {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3d73c9;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .respond-btn:hover {
+      background-color: #2b5dad;
+    }
+
+    .response-box {
+      margin-top: 12px;
+    }
+
+    .response-box textarea {
+      min-height: 70px;
+      margin-bottom: 8px;
+    }
+
+    .response-submit {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: green;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .responses {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #c8d7f5;
+    }
+
+    .response-item {
+      background-color: #ffffff;
+      border-left: 4px solid #9ccc65;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .response-user {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 4px;
+      font-weight: bold;
     }
 
     .profile-box p {
@@ -265,12 +324,16 @@
       {
         title: "Practice Reminder",
         username: "player1",
-        message: "Practice starts at 5 PM tomorrow."
+        message: "Practice starts at 5 PM tomorrow.",
+        responses: [
+          { username: "coachalex", message: "Thanks for the reminder." }
+        ]
       },
       {
         title: "Game Update",
         username: "mariaperez",
-        message: "The game has been moved to Saturday."
+        message: "The game has been moved to Saturday.",
+        responses: []
       }
     ];
 
@@ -320,10 +383,35 @@
           postDiv.classList.add("selected");
         }
 
+        let responsesHTML = "";
+        if (post.responses && post.responses.length > 0) {
+          responsesHTML = `
+            <div class="responses">
+              ${post.responses.map(response => `
+                <div class="response-item">
+                  <div class="response-user">@${response.username}</div>
+                  <div>${response.message}</div>
+                </div>
+              `).join("")}
+            </div>
+          `;
+        }
+
         postDiv.innerHTML = `
           <div class="post-title">${post.title}</div>
           <div class="post-username">@${post.username}</div>
           <div class="post-message">${post.message}</div>
+
+          <div class="post-actions">
+            <button class="respond-btn" onclick="toggleResponseBox(event, ${realIndex})">Respond</button>
+          </div>
+
+          <div class="response-box hidden" id="responseBox-${realIndex}">
+            <textarea id="responseText-${realIndex}" placeholder="Write your response here..."></textarea>
+            <button class="response-submit" onclick="addResponse(event, ${realIndex})">Post Response</button>
+          </div>
+
+          ${responsesHTML}
         `;
 
         postDiv.onclick = function () {
@@ -360,11 +448,20 @@
     function showTeamPosts() {
       currentView = "team";
       const posts = getPosts();
-      const indexes = posts.map((_, index) => index);
+      const filteredPosts = [];
+      const indexes = [];
+
+      posts.forEach((post, index) => {
+        if (post.username !== adminUsername) {
+          filteredPosts.push(post);
+          indexes.push(index);
+        }
+      });
+
       sectionTitle.textContent = "Team Posts";
       hideAllSections();
       document.getElementById("postsSection").classList.remove("hidden");
-      renderPosts(posts, indexes);
+      renderPosts(filteredPosts, indexes);
     }
 
     function showYourPosts() {
@@ -404,13 +501,19 @@
       const newPost = {
         title: postTitle.value,
         username: adminUsername,
-        message: postMessage.value
+        message: postMessage.value,
+        responses: []
       };
 
       if (editIndex.value === "") {
         posts.push(newPost);
       } else {
-        posts[editIndex.value] = newPost;
+        posts[editIndex.value] = {
+          ...posts[editIndex.value],
+          title: postTitle.value,
+          username: adminUsername,
+          message: postMessage.value
+        };
       }
 
       savePosts(posts);
@@ -445,6 +548,38 @@
       posts.splice(selectedPostIndex, 1);
       savePosts(posts);
       selectedPostIndex = null;
+      refreshCurrentView();
+    }
+
+    function toggleResponseBox(event, index) {
+      event.stopPropagation();
+      const box = document.getElementById(`responseBox-${index}`);
+      box.classList.toggle("hidden");
+    }
+
+    function addResponse(event, index) {
+      event.stopPropagation();
+
+      const responseInput = document.getElementById(`responseText-${index}`);
+      const responseText = responseInput.value.trim();
+
+      if (responseText === "") {
+        alert("Please write a response first.");
+        return;
+      }
+
+      const posts = getPosts();
+
+      if (!posts[index].responses) {
+        posts[index].responses = [];
+      }
+
+      posts[index].responses.push({
+        username: adminUsername,
+        message: responseText
+      });
+
+      savePosts(posts);
       refreshCurrentView();
     }
 
