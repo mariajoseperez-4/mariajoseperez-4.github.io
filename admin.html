@@ -67,6 +67,7 @@
       display: flex;
       gap: 10px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     .top-buttons button {
@@ -106,7 +107,7 @@
       font-weight: bold;
     }
 
-    input, textarea, select {
+    input, textarea {
       width: 100%;
       padding: 10px;
       border: 1px solid #bbb;
@@ -115,7 +116,7 @@
     }
 
     textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: vertical;
     }
 
@@ -143,14 +144,35 @@
       border-left: 6px solid #3d73c9;
       padding: 15px;
       border-radius: 8px;
+      cursor: pointer;
     }
 
-    .post h3 {
-      margin-bottom: 8px;
+    .post.selected {
+      outline: 3px solid orange;
     }
 
-    .post p {
-      margin-bottom: 8px;
+    .post-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #111;
+    }
+
+    .post-username {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .post-message {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #222;
+    }
+
+    .profile-box p {
+      margin-bottom: 10px;
+      font-size: 16px;
     }
 
     .hidden {
@@ -180,37 +202,44 @@
   <div class="container">
     <div class="sidebar">
       <h2>Menu</h2>
-      <button onclick="showSection('createSection')">Create Post</button>
+      <button onclick="showProfile()">Profile</button>
       <button onclick="showYourPosts()">Your Posts</button>
       <button onclick="showTeamPosts()">Team Posts</button>
     </div>
 
     <div class="main">
       <div class="top-buttons">
+        <button onclick="showCreate()">Create</button>
+        <button onclick="showDashboard()">Dashboard</button>
         <button onclick="editSelectedPost()">Edit</button>
         <button onclick="deleteSelectedPost()">Delete</button>
       </div>
 
-      <div id="createSection" class="card">
+      <div id="profileSection" class="card hidden">
+        <h2>Profile</h2>
+        <div class="profile-box">
+          <p><strong>Name:</strong> Maria Perez</p>
+          <p><strong>Username:</strong> @mariaperez</p>
+          <p><strong>Role:</strong> Admin</p>
+        </div>
+      </div>
+
+      <div id="createSection" class="card hidden">
         <h2>Create Post</h2>
         <form id="postForm">
           <div class="form-group">
             <label for="postTitle">Post Title</label>
-            <input type="text" id="postTitle" required>
+            <input type="text" id="postTitle" placeholder="Enter post title" required>
           </div>
 
           <div class="form-group">
-            <label for="postRole">Who is posting?</label>
-            <select id="postRole" required>
-              <option value="">Select role</option>
-              <option value="Admin">Admin</option>
-              <option value="Player">Player</option>
-            </select>
+            <label>Username</label>
+            <input type="text" id="displayUsername" readonly>
           </div>
 
           <div class="form-group">
-            <label for="postContent">Post Message</label>
-            <textarea id="postContent" required></textarea>
+            <label for="postMessage">Message</label>
+            <textarea id="postMessage" placeholder="Type your message here..." required></textarea>
           </div>
 
           <input type="hidden" id="editIndex" value="">
@@ -219,7 +248,7 @@
       </div>
 
       <div id="postsSection" class="card">
-        <h2 id="sectionTitle">Team Posts</h2>
+        <h2 id="sectionTitle">Dashboard</h2>
         <div id="postsContainer" class="posts-container"></div>
       </div>
     </div>
@@ -227,21 +256,21 @@
 
   <script>
     const adminName = "Maria Perez";
+    const adminUsername = "mariaperez";
+
     let selectedPostIndex = null;
-    let currentView = "team";
+    let currentView = "dashboard";
 
     const samplePosts = [
       {
         title: "Practice Reminder",
-        role: "Player",
-        content: "Practice starts at 5 PM tomorrow.",
-        author: "Player 1"
+        username: "player1",
+        message: "Practice starts at 5 PM tomorrow."
       },
       {
         title: "Game Update",
-        role: "Admin",
-        content: "The game was moved to Saturday.",
-        author: "Admin Team"
+        username: "mariaperez",
+        message: "The game has been moved to Saturday."
       }
     ];
 
@@ -251,11 +280,13 @@
 
     const postForm = document.getElementById("postForm");
     const postTitle = document.getElementById("postTitle");
-    const postRole = document.getElementById("postRole");
-    const postContent = document.getElementById("postContent");
+    const displayUsername = document.getElementById("displayUsername");
+    const postMessage = document.getElementById("postMessage");
     const editIndex = document.getElementById("editIndex");
     const postsContainer = document.getElementById("postsContainer");
     const sectionTitle = document.getElementById("sectionTitle");
+
+    displayUsername.value = "@" + adminUsername;
 
     function getPosts() {
       return JSON.parse(localStorage.getItem("teamPosts")) || [];
@@ -263,6 +294,12 @@
 
     function savePosts(posts) {
       localStorage.setItem("teamPosts", JSON.stringify(posts));
+    }
+
+    function hideAllSections() {
+      document.getElementById("profileSection").classList.add("hidden");
+      document.getElementById("createSection").classList.add("hidden");
+      document.getElementById("postsSection").classList.add("hidden");
     }
 
     function renderPosts(postsArray, originalIndexes) {
@@ -276,19 +313,17 @@
 
       postsArray.forEach((post, i) => {
         const realIndex = originalIndexes[i];
-
         const postDiv = document.createElement("div");
-        postDiv.classList.add("post");
+        postDiv.className = "post";
 
         if (selectedPostIndex === realIndex) {
-          postDiv.style.outline = "3px solid orange";
+          postDiv.classList.add("selected");
         }
 
         postDiv.innerHTML = `
-          <h3>${post.title}</h3>
-          <p><strong>Role:</strong> ${post.role}</p>
-          <p><strong>Posted by:</strong> ${post.author}</p>
-          <p>${post.content}</p>
+          <div class="post-title">${post.title}</div>
+          <div class="post-username">@${post.username}</div>
+          <div class="post-message">${post.message}</div>
         `;
 
         postDiv.onclick = function () {
@@ -300,10 +335,26 @@
       });
     }
 
-    function showSection(sectionId) {
-      document.getElementById("createSection").classList.add("hidden");
-      document.getElementById("postsSection").classList.add("hidden");
-      document.getElementById(sectionId).classList.remove("hidden");
+    function showProfile() {
+      currentView = "profile";
+      hideAllSections();
+      document.getElementById("profileSection").classList.remove("hidden");
+    }
+
+    function showCreate() {
+      currentView = "create";
+      hideAllSections();
+      document.getElementById("createSection").classList.remove("hidden");
+    }
+
+    function showDashboard() {
+      currentView = "dashboard";
+      const posts = getPosts();
+      const indexes = posts.map((_, index) => index);
+      sectionTitle.textContent = "Dashboard";
+      hideAllSections();
+      document.getElementById("postsSection").classList.remove("hidden");
+      renderPosts(posts, indexes);
     }
 
     function showTeamPosts() {
@@ -311,7 +362,8 @@
       const posts = getPosts();
       const indexes = posts.map((_, index) => index);
       sectionTitle.textContent = "Team Posts";
-      showSection("postsSection");
+      hideAllSections();
+      document.getElementById("postsSection").classList.remove("hidden");
       renderPosts(posts, indexes);
     }
 
@@ -322,22 +374,25 @@
       const indexes = [];
 
       posts.forEach((post, index) => {
-        if (post.author === adminName) {
+        if (post.username === adminUsername) {
           filteredPosts.push(post);
           indexes.push(index);
         }
       });
 
       sectionTitle.textContent = "Your Posts";
-      showSection("postsSection");
+      hideAllSections();
+      document.getElementById("postsSection").classList.remove("hidden");
       renderPosts(filteredPosts, indexes);
     }
 
     function refreshCurrentView() {
       if (currentView === "your") {
         showYourPosts();
-      } else {
+      } else if (currentView === "team") {
         showTeamPosts();
+      } else {
+        showDashboard();
       }
     }
 
@@ -348,9 +403,8 @@
 
       const newPost = {
         title: postTitle.value,
-        role: postRole.value,
-        content: postContent.value,
-        author: adminName
+        username: adminUsername,
+        message: postMessage.value
       };
 
       if (editIndex.value === "") {
@@ -361,7 +415,7 @@
 
       savePosts(posts);
       clearForm();
-      showTeamPosts();
+      showDashboard();
     });
 
     function editSelectedPost() {
@@ -374,11 +428,11 @@
       const post = posts[selectedPostIndex];
 
       postTitle.value = post.title;
-      postRole.value = post.role;
-      postContent.value = post.content;
+      postMessage.value = post.message;
+      displayUsername.value = "@" + post.username;
       editIndex.value = selectedPostIndex;
 
-      showSection("createSection");
+      showCreate();
     }
 
     function deleteSelectedPost() {
@@ -396,10 +450,11 @@
 
     function clearForm() {
       postForm.reset();
+      displayUsername.value = "@" + adminUsername;
       editIndex.value = "";
     }
 
-    showTeamPosts();
+    showDashboard();
   </script>
 
 </body>
