@@ -1,22 +1,24 @@
 /* Body */
 body {
-    background-color: #b0c8d8;
+    background-color: #a8c8df;
     font-family: Georgia, serif;
     font-size: 14px;
     margin: 20px 40px;
     padding: 0;
 }
 
-/* H1 - centered */
+/* H1 - centered, BIGGER */
 h1 {
     text-align: center;
-    font-size: 2.2em;
-    margin-bottom: 5px;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 /* H2 */
 h2 {
     font-size: 1.6em;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
@@ -32,12 +34,12 @@ p {
     line-height: 1.4;
 }
 
-/* 2nd paragraph - WHITE background, green border */
+/* 2nd paragraph - WHITE, wider, green border */
 #paragraph2 {
-    width: 450px;
-    margin: 10px 0 10px 30px;
-    padding: 15px 20px;
-    border: 2px solid #2e7d32;
+    width: 620px;
+    margin: 10px 0 10px 0;
+    padding: 15px 25px;
+    border: 3px solid #2e8b2e;
     line-height: 2.2;
     background-color: #ffffff;
     box-sizing: border-box;
@@ -56,17 +58,17 @@ p.blue {
 
 /* --- LINKS --- */
 ol li a {
-    color: #4682b4;
+    color: #4a7fc1;
     text-decoration: underline;
 }
 
 ol li a:visited {
-    color: #4682b4;
+    color: #4a7fc1;
 }
 
-/* W3Schools link - red */
+/* W3Schools link - red/orange */
 section p a[href*="w3schools"] {
-    color: #cc2200;
+    color: #cc3300;
     text-decoration: underline;
 }
 
@@ -84,20 +86,21 @@ ol li {
 /* --- TABLE --- */
 table {
     border-collapse: collapse;
-    width: 100%;
-    max-width: 500px;
+    width: 460px;
     margin-top: 8px;
     font-size: 13px;
 }
 
+/* GRAY header background */
 table th {
-    background-color: #9eb8cc;
+    background-color: #aaaaaa;
     border: 1px solid #555555;
     padding: 6px 12px;
     text-align: center;
     font-weight: bold;
 }
 
+/* White cell background */
 table td {
     background-color: #ffffff;
     border: 1px solid #555555;
