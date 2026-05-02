@@ -1,0 +1,94 @@
+/* General Body Styles */
+body {
+    background-color: #a8c8e0;
+    font-family: Georgia, serif;
+    margin: 20px;
+    padding: 0;
+}
+
+/* Top Header - centered */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* Article headers */
+h2 {
+    font-size: 1.8em;
+    color: #000000;
+}
+
+h3 {
+    font-size: 1.1em;
+    color: #000000;
+}
+
+/* --- PARAGRAPHS --- */
+
+/* 2nd paragraph (#paragraph2): box with border, padding, constrained width */
+#paragraph2 {
+    width: 500px;
+    margin: 10px auto;
+    padding: 20px 30px;
+    border: 3px solid #2d6a2d;
+    line-height: 2;
+    background-color: #a8c8e0;
+}
+
+/* 4th and 5th paragraphs (.blue): dark navy background, white text */
+p.blue {
+    background-color: #1a1a5e;
+    color: #ffffff;
+    padding: 15px 20px;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+/* --- LINKS --- */
+
+/* List item links */
+ol li a {
+    color: #4a7ab5;
+    text-decoration: underline;
+}
+
+ol li a:visited {
+    color: #4a7ab5;
+}
+
+/* W3schools link - different color */
+article:last-child section p a {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+/* --- ORDERED LIST --- */
+ol {
+    list-style-type: decimal-leading-zero;
+    padding-left: 40px;
+}
+
+ol li {
+    margin: 4px 0;
+}
+
+/* --- TABLE --- */
+table {
+    border-collapse: collapse;
+    width: 350px;
+    margin-top: 10px;
+}
+
+table th {
+    background-color: #b0c4de;
+    border: 1px solid #555555;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+table td {
+    background-color: #dce8f0;
+    border: 1px solid #555555;
+    padding: 5px 10px;
+}
