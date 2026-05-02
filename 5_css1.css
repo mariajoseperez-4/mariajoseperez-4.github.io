@@ -7,7 +7,6 @@ body {
     padding: 0;
 }
 
-/* H1 - centered, BIGGER */
 h1 {
     text-align: center;
     font-size: 3em;
@@ -15,41 +14,33 @@ h1 {
     margin-bottom: 10px;
 }
 
-/* H2 */
 h2 {
     font-size: 1.6em;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-/* H3 */
 h3 {
     font-size: 1.1em;
     font-weight: bold;
 }
 
-/* Default paragraphs */
 p {
     margin: 10px 0;
     line-height: 1.4;
 }
 
-/* 2nd paragraph - WHITE, WIDER so text fits in 3 lines */
+/* 2nd paragraph - NO clamp, just very wide so text fits in 3 lines */
 #paragraph2 {
-    width: 700px;
-    margin: 10px 0 10px 0;
+    width: 900px;
+    margin: 10px 0;
     padding: 10px 20px;
     border: 3px solid #2e8b2e;
     line-height: 2;
     background-color: #ffffff;
     box-sizing: border-box;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
 }
 
-/* 4th and 5th paragraphs - purple navy */
 p.blue {
     background-color: #2e2e8b;
     color: #ffffff;
@@ -60,7 +51,6 @@ p.blue {
     box-sizing: border-box;
 }
 
-/* --- LINKS --- */
 ol li a {
     color: #4a7fc1;
     text-decoration: underline;
@@ -70,13 +60,11 @@ ol li a:visited {
     color: #4a7fc1;
 }
 
-/* W3Schools link - red */
 section p a[href*="w3schools"] {
     color: #cc3300;
     text-decoration: underline;
 }
 
-/* --- ORDERED LIST --- */
 ol {
     list-style-type: decimal-leading-zero;
     padding-left: 30px;
@@ -87,7 +75,6 @@ ol li {
     margin: 3px 0;
 }
 
-/* --- TABLE --- */
 table {
     border-collapse: collapse;
     width: 460px;
