@@ -1,6 +1,6 @@
 /* Body */
 body {
-    background-color: #a8c8df;
+    background-color: #b8d4e8;
     font-family: Georgia, serif;
     font-size: 14px;
     margin: 20px 40px;
@@ -34,20 +34,20 @@ p {
     line-height: 1.4;
 }
 
-/* 2nd paragraph - WHITE, wider, green border */
+/* 2nd paragraph - WHITE, wider, green border, only 3 lines tall */
 #paragraph2 {
-    width: 620px;
+    width: 750px;
     margin: 10px 0 10px 0;
-    padding: 15px 25px;
+    padding: 10px 20px;
     border: 3px solid #2e8b2e;
-    line-height: 2.2;
+    line-height: 2;
     background-color: #ffffff;
     box-sizing: border-box;
 }
 
-/* 4th and 5th paragraphs - dark navy */
+/* 4th and 5th paragraphs - purple navy like original */
 p.blue {
-    background-color: #1a1a6e;
+    background-color: #2e2e8b;
     color: #ffffff;
     padding: 12px 20px;
     margin: 6px 0;
