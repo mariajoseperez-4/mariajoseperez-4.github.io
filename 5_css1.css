@@ -34,15 +34,19 @@ p {
     line-height: 1.4;
 }
 
-/* 2nd paragraph - WHITE, wider, green border, only 3 lines tall */
+/* 2nd paragraph - WHITE, wider, green border, EXACTLY 3 lines */
 #paragraph2 {
-    width: 750px;
+    width: 500px;
     margin: 10px 0 10px 0;
     padding: 10px 20px;
     border: 3px solid #2e8b2e;
     line-height: 2;
     background-color: #ffffff;
     box-sizing: border-box;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* 4th and 5th paragraphs - purple navy like original */
