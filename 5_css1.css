@@ -1,94 +1,107 @@
-/* General Body Styles */
+/* Body */
 body {
-    background-color: #a8c8e0;
+    background-color: #a8c4d4;
     font-family: Georgia, serif;
-    margin: 20px;
+    font-size: 14px;
+    margin: 20px 40px;
     padding: 0;
 }
 
-/* Top Header - centered */
+/* H1 - centered, large */
 h1 {
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2.2em;
+    margin-bottom: 5px;
 }
 
-/* Article headers */
+/* H2 */
 h2 {
-    font-size: 1.8em;
-    color: #000000;
+    font-size: 1.6em;
+    margin-bottom: 5px;
 }
 
+/* H3 */
 h3 {
     font-size: 1.1em;
-    color: #000000;
+    font-weight: bold;
 }
 
-/* --- PARAGRAPHS --- */
+/* Default paragraphs */
+p {
+    margin: 10px 0;
+    line-height: 1.4;
+}
 
-/* 2nd paragraph (#paragraph2): box with border, padding, constrained width */
+/* 2nd paragraph - box, LEFT aligned, not centered */
 #paragraph2 {
-    width: 500px;
-    margin: 10px auto;
-    padding: 20px 30px;
-    border: 3px solid #2d6a2d;
-    line-height: 2;
-    background-color: #a8c8e0;
+    width: 550px;
+    margin: 10px 0 10px 50px;
+    padding: 10px 20px;
+    border: 2px solid #2e7d32;
+    line-height: 2.2;
+    background-color: #a8c4d4;
+    box-sizing: border-box;
 }
 
-/* 4th and 5th paragraphs (.blue): dark navy background, white text */
+/* 4th and 5th paragraphs - dark navy */
 p.blue {
-    background-color: #1a1a5e;
+    background-color: #1a1a6e;
     color: #ffffff;
-    padding: 15px 20px;
-    margin: 5px 0;
+    padding: 12px 20px;
+    margin: 6px 0;
     line-height: 1.5;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* --- LINKS --- */
 
-/* List item links */
+/* List item links - medium steel blue */
 ol li a {
-    color: #4a7ab5;
+    color: #4682b4;
     text-decoration: underline;
 }
 
 ol li a:visited {
-    color: #4a7ab5;
+    color: #4682b4;
 }
 
-/* W3schools link - different color */
-article:last-child section p a {
-    color: #c0392b;
+/* W3Schools link - red/orange, clearly different */
+section p a[href*="w3schools"] {
+    color: #cc2200;
     text-decoration: underline;
 }
 
 /* --- ORDERED LIST --- */
 ol {
     list-style-type: decimal-leading-zero;
-    padding-left: 40px;
+    padding-left: 30px;
+    margin: 10px 0;
 }
 
 ol li {
-    margin: 4px 0;
+    margin: 3px 0;
+    font-size: 14px;
 }
 
 /* --- TABLE --- */
 table {
     border-collapse: collapse;
-    width: 350px;
-    margin-top: 10px;
+    width: 360px;
+    margin-top: 8px;
+    font-size: 13px;
 }
 
 table th {
-    background-color: #b0c4de;
-    border: 1px solid #555555;
-    padding: 5px 10px;
+    background-color: #b8cfe0;
+    border: 1px solid #666666;
+    padding: 4px 10px;
     text-align: center;
+    font-weight: bold;
 }
 
 table td {
-    background-color: #dce8f0;
-    border: 1px solid #555555;
-    padding: 5px 10px;
+    background-color: #dce9f2;
+    border: 1px solid #666666;
+    padding: 4px 10px;
 }
