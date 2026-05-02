@@ -34,9 +34,9 @@ p {
     line-height: 1.4;
 }
 
-/* 2nd paragraph - WHITE, wider, green border, EXACTLY 3 lines */
+/* 2nd paragraph - WHITE, WIDER so text fits in 3 lines */
 #paragraph2 {
-    width: 500px;
+    width: 700px;
     margin: 10px 0 10px 0;
     padding: 10px 20px;
     border: 3px solid #2e8b2e;
@@ -49,7 +49,7 @@ p {
     -webkit-box-orient: vertical;
 }
 
-/* 4th and 5th paragraphs - purple navy like original */
+/* 4th and 5th paragraphs - purple navy */
 p.blue {
     background-color: #2e2e8b;
     color: #ffffff;
@@ -70,7 +70,7 @@ ol li a:visited {
     color: #4a7fc1;
 }
 
-/* W3Schools link - red/orange */
+/* W3Schools link - red */
 section p a[href*="w3schools"] {
     color: #cc3300;
     text-decoration: underline;
@@ -95,7 +95,6 @@ table {
     font-size: 13px;
 }
 
-/* GRAY header background */
 table th {
     background-color: #aaaaaa;
     border: 1px solid #555555;
@@ -104,7 +103,6 @@ table th {
     font-weight: bold;
 }
 
-/* White cell background */
 table td {
     background-color: #ffffff;
     border: 1px solid #555555;
